@@ -6,10 +6,7 @@ from smart_selects.utils import unicode_sorter
 
 def filterchain(request, app, model, field, value, manager=None):
     Model = get_model(app, model)
-    if value == '0':
-        keywords = {str("%s__isnull" % field):True}
-    else:
-        keywords = {str(field): str(value)}
+    keywords = {str(field): str(value)}
     if manager is not None and hasattr(Model, manager):
         queryset = getattr(Model, manager).all()
     else:
